@@ -1,3 +1,9 @@
+
+#address{
+   width:500px;
+   
+ 
+
 img {
     height: 400px;
     background-position: center;
@@ -6,4 +12,5 @@ img {
     justify-content: flex-end;
     margin: auto;
     border: 10px solid;
+
 }
