@@ -1,3 +1,4 @@
+
 // Config
 const isOpenClass = 'modal-is-open';
 const openingClass = 'modal-is-opening';
@@ -42,4 +43,12 @@ const closeModal = modal => {
     modal.removeAttribute('open');
   }, animationDuration);
 }
+
+
+var range = document.getElementById("range");
+var rangeValue = document.getElementById("range-value");
+
+range.addEventListener("input", function () {
+  rangeValue.textContent = range.value + ' miles';
+});
 
