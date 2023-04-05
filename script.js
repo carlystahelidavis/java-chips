@@ -47,8 +47,17 @@ const closeModal = modal => {
 
 var range = document.getElementById("range");
 var rangeValue = document.getElementById("range-value");
+var home = document.querySelector("#home-page");
+var start = document.querySelector("#start-button");
+var preferences = document.querySelector("#preferences-page");
 
 range.addEventListener("input", function () {
   rangeValue.textContent = range.value + ' miles';
 });
 
+function beginOrder () {
+    home.setAttribute("style", "display: none");
+    preferences.setAttribute("style", "display: block");
+};
+
+start.addEventListener('click', beginOrder);

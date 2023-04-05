@@ -1,6 +1,7 @@
 
 #address{
    width:500px;
+}
    
  
 
@@ -13,4 +14,8 @@ img {
     margin: auto;
     border: 10px solid;
 
+}
+
+#preferences-page {
+    display: none;
 }
