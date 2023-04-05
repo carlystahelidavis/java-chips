@@ -11,7 +11,7 @@ let visibleModal = null;
 const toggleModal = event => {
   event.preventDefault();
   const modal = document.getElementById(event.currentTarget.getAttribute('data-target'));
-  (typeof(modal) != 'undefined' && modal != null)
+  (typeof (modal) != 'undefined' && modal != null)
     && isModalOpen(modal) ? closeModal(modal) : openModal(modal)
 }
 
@@ -55,9 +55,40 @@ range.addEventListener("input", function () {
   rangeValue.textContent = range.value + ' miles';
 });
 
+
 function beginOrder () {
     home.setAttribute("style", "display: none");
     preferences.setAttribute("style", "display: block");
 };
 
 start.addEventListener('click', beginOrder);
+
+//address javascript
+// Is scrollbar visible
+const isScrollbarVisible = () => {
+  return document.body.scrollHeight > screen.height;
+}
+
+// Get scrollbar width
+const getScrollbarWidth = () => {
+
+  // Creating invisible container
+  const outer = document.createElement('div');
+  outer.style.visibility = 'hidden';
+  outer.style.overflow = 'scroll'; // forcing scrollbar to appear
+  outer.style.msOverflowStyle = 'scrollbar'; // needed for WinJS apps
+  document.body.appendChild(outer);
+
+  // Creating inner element and placing it in the container
+  const inner = document.createElement('div');
+  outer.appendChild(inner);
+
+  // Calculating difference between container's full width and the child width
+  const scrollbarWidth = (outer.offsetWidth - inner.offsetWidth);
+
+  // Removing temporary elements from the DOM
+  outer.parentNode.removeChild(outer);
+
+  return scrollbarWidth;
+}
+
