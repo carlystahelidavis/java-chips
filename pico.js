@@ -93,3 +93,5 @@ const getScrollbarWidth = () => {
 const isScrollbarVisible = () => {
   return document.body.scrollHeight > screen.height;
 }
+
+// Get scrollbar width
