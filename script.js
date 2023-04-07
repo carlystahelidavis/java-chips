@@ -56,9 +56,9 @@ range.addEventListener("input", function () {
 });
 
 
-function beginOrder () {
-    home.setAttribute("style", "display: none");
-    preferences.setAttribute("style", "display: block");
+function beginOrder() {
+  home.setAttribute("style", "display: none");
+  preferences.setAttribute("style", "display: block");
 };
 
 start.addEventListener('click', beginOrder);
@@ -92,3 +92,35 @@ const getScrollbarWidth = () => {
   return scrollbarWidth;
 }
 
+function getRestaurantList() {
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': 'bcfd012af7msh7fdff2617da2484p1117acjsn51c78b0dac2b',
+      'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+    }
+  };
+
+  fetch('https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=40.7608&longitude=-111.8910&limit=30&currency=USD&distance=2&open_now=false&lunit=km&lang=en_US', options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+}
+function getLatLon() {
+
+  var address = "537 W 600 S, Salt Lake City, UT 84101";
+  var encode = encodeURIComponent(address);
+
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '8403ee9960msh8ee9ed3f1dc65f9p1d13c3jsna559bd38400a',
+      'X-RapidAPI-Host': 'address-from-to-latitude-longitude.p.rapidapi.com'
+    }
+  };
+
+  fetch('https://address-from-to-latitude-longitude.p.rapidapi.com/geolocationapi?address='+encode, options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+}
