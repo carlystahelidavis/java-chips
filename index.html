@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,218 +9,207 @@
 </head>
 
 <header>
-        <hgroup>
-  <h1 id="home">Java Chips</h1>
-  <h5>The Food Generator - The Best Kind of Magic</h5>
-</hgroup>
-<nav>
-  <ul>
-    <h2>
-      <li>Food Generator</li>
-    </h2>
-  </ul>
+  <!--Below is our project name, project title, and a slogan.-->
+  <hgroup>
+    <h1 id="home">Java Chips</h1>
+    <h5>The Food Generator - The Best Kind of Magic</h5>
+  </hgroup>
+  <nav>
+    <ul>
+      <h2>
+        <li>Food Generator</li>
+      </h2>
+    </ul>
+    <!--Below is a naviagation bar, set up with an address, home, and previous orders buttons.-->
     <nav>
       <ul>
         <li><button data-target="address-dialog" onClick="toggleModal(event)">Address</button></li>
         <li><a href="#" role="button">Home</a></li>
         <li><a href="#" role="button">Previous Orders</a></li>
-     
+
       </ul>
     </nav>
+    <!-- Below is our opening modal, it is the first thing to appear when you deploy the page, introducing our main idea and how to start your order!-->
     <dialog open id="modal-example">
-        <article>
-          <a href="#close"
-            aria-label="Close"
-            class="close"
-            data-target="modal-example"
-            onClick="toggleModal(event)">
+      <article>
+        <a href="#close" aria-label="Close" class="close" data-target="modal-example" onClick="toggleModal(event)">
+        </a>
+        <h3>Don't know what to eat? You came to the right place!
+        </h3>
+        <p>
+          When you click on "Start Order" you will input your food preferences and we will generate a random meal and
+          restaurant based off those preferences!
+        </p>
+        <footer>
           </a>
-          <h3>Don't know what to eat? You came to the right place!
-          </h3>
-          <p>
-            When you click on "Start Order" you will input your food preferences and we will generate a random meal and restaurant based off those preferences!
-          </p>
-          <footer>
-            </a>
-            <a href="#confirm"
-              role="button"
-              data-target="modal-example"
-              onClick="toggleModal(event)">
-              Let's eat! 
-            </a>
-          </footer>
-        </article>
-      </dialog>
+          <a href="#confirm" role="button" data-target="modal-example" onClick="toggleModal(event)">
+            Let's eat!
+          </a>
+        </footer>
+      </article>
+    </dialog>
+  </nav>
 </header>
 
-
-
-  <body>
-    <main>
-        <div id="home-page">
-            <img src="./assets/boliviainteligente-vGFoWiT79I8-unsplash.jpg" alt="FrontPageBanner" />
-            <!-- Link Ever's Preferences page here! -->
-            <button id="start-button">Start Your Order Here!</button>
-            <blockquote>
-                "Wow! This program changed my life forever!"
-                <footer>
-                    <cite>- Tommy</cite>
-                </footer>
-                <blockquote>
-                    "Once you start to use this, you will never go back! "
-                    <footer>
-                        <cite>- Billy</cite>
-                    </footer>
-                </blockquote>
-        </div>
-      <form id="preferences-page"> <!--Ever's section begins-->
-        <h2 class="container">Preferences</h2>
-        <div class="container">
-          <label for="cuisine">Cuisine Preference</label>
-          <select id="cuisine" required>
-            <option value="" selected>Select a cuisine type...</option>
-            <option>Pizza</option>
-            <option>Burgers</option>
-            <option>Indian</option>
-            <option>Mexican</option>
-            <option>Italian</option>
-            <option>Chinese</option>
-            <option>Vegan</option>
-          </select>
-
-          <label for="rating">Restaurant Rating</label>
-          <select id="rating" required>
-            <option value="" selected>Minimum acceptable rating...</option>
-            <option>2.0</option>
-            <option>2.5</option>
-            <option>3.0</option>
-            <option>3.5</option>
-            <option>4.0</option>
-            <option>4.5</option>
-          </select>
-
-        <fieldset>
-            <legend>Select Any Allergies</legend>
-            <label for="small"><input type="checkbox" id="milk" name="allergy" value="milk"/>Milk</label>
-            <label for="eggs"><input type="checkbox" id="eggs" name="allergy" value="eggs"/>Eggs</label>
-            <label for="fish"><input type="checkbox" id="fish" name="allergy" value="fish"/>Fish</label>
-            <label for="shellfish"><input type="checkbox" id="shellfish" name="allergy" value="shellfish"/>Shellfish</label>
-            <label for="tree-nuts"><input type="checkbox" id="tree-nuts" name="allergy" value="tree-nuts"/>Tree Nuts</label>
-            <label for="peanuts"><input type="checkbox" id="peanuts" name="allergy" value="peanuts"/>Peanuts</label>
-            <label for="wheat"><input type="checkbox" id="wheat" name="allergy" value="wheat"/>Wheat</label>
-            <label for="soybeans"><input type="checkbox" id="soybeans" name="allergy" value="soybeans"/>Soybeans</label>
-        </fieldset>
-
-        <fieldset>
-            <legend>Meat Preferences (if applicable) </legend>
-            <label for="beef"><input type="checkbox" id="beef" name="meat" value="beef"/>Beef</label>
-            <label for="pork"><input type="checkbox" id="pork" name="allergy" value="pork" />Pork</label>
-            <label for="chicken"><input type="checkbox" id="chicken" name="allergy" value="chicken" />Chicken</label>
-        </fieldset>
-
-        <fieldset>
-            <legend>Spice Level</legend>
-            <label for="mild"><input type="radio" id="mild" name="spice" value="mild"/>Mild</label>
-            <label for="medium"><input type="radio" id="medium" name="spice" value="medium"/>Medium</label>
-            <label for="hot"><input type="radio" id="hot" name="spice" value="hot"/>Hot</label>
-        </fieldset>
-
-                <label for="range">Distance: 
-            <span id="range-value">25 miles</span>
-            <input type="range" min="10" max="50" value="25" id="range" name="range" />
-        </label>
-        </div>
-      </form> <!--Ever's section ends-->
-
-
-
-  <dialog id="address-dialog">
-    <article>
-    <a href="#close"
-    aria-label="Close"
-    class="close"
-    data-target="address-dialog"
-    onClick="toggleModal(event)">
-  </a>
-  
-    <div id="address">
-      <h3>Enter Your Address</h3>
-      <form>
-
-        <!-- Grid -->
-        <div class="grid">
-
-          <!-- Markup example 1: input is inside label -->
-          <label for="firstname">
-            First name
-            <input type="text" id="firstname" name="firstname" placeholder="First name" required>
-          </label>
-
-          <label for="lastname">
-            Last name
-            <input type="text" id="lastname" name="lastname" placeholder="Last name" required>
-          </label>
-
-
-        </div>
-        <label for="add">Address</label>
-        <input type="text" id="add" name="add" placeholder="Address" required>
-
-        <!-- Select -->
-        <label for="city">City</label>
-        <select id="city" required>
-          <option value="" selected>Select a city…</option>
-          <option>Salt Lake City</option>
-          <option>St George</option>
-          <option>Murray</option>
-          <option>Lehi</option>
-          <option>Provo</option>
-          <option>Ogden</option>
-          <option>Hebber City</option>
-        </select>
-
-        <!-- Select -->
-        <label for="state">State</label>
-        <select id="state" required>
-          <option value="" selected>Select a state…</option>
-          <option>UT</option>
-          <option>MT</option>
-          <option>NY</option>
-          <option>TX</option>
-          <option>FL</option>
-          <option>CO</option>
-          <option>CA</option>
-          <option>WA</option>
-
-        </select>
-
-        <!-- Markup example 2: input is after label -->
-        <label for="zipcode">Zip Code</label>
-        <input type="number" id="zipcode" name="zipcode" placeholder="Zip Code" required>
-
-
-        <!-- Markup example 2: input is after label -->
-        <label for="email">Email address</label>
-        <input type="email" id="email" name="email" placeholder="Email address" required>
-        <small>We'll never share your email with anyone else.</small>
-
-        <!-- Markup example 2: input is after label -->
-        <label for="mobile">Mobile Number</label>
-        <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="mobile" name="mobile" placeholder="XXX-XXX-XXXX"
-          required>
-
-        <!-- Button -->
-        <button type="submit">Submit</button>
-      </form>
+<body>
+  <main>
+    <div id="home-page">
+      <img src="./assets/boliviainteligente-vGFoWiT79I8-unsplash.jpg" alt="FrontPageBanner" />
+      <button id="start-button">Start Your Order Here!</button>
+      <!--Below are blockquotes sharing reviews/testimonials for the food generator.-->
+      <blockquote>
+        "Wow! This program changed my life forever!"
+        <footer>
+          <cite>- Tommy</cite>
+        </footer>
+        <blockquote>
+          "Once you start to use this, you will never go back! "
+          <footer>
+            <cite>- Billy</cite>
+          </footer>
+        </blockquote>
     </div>
-  </article>
-  </dialog>
-</nav>
+    <!--Below is the first page from the "Start Your Order Here" button, taking you to the preferences page. This page shows options to select different cuisine, resturant ratings, any possible allergies, meat preferences, spice level, and distance.-->
+    <form id="preferences-page">
+      <h2 class="container">Preferences</h2>
+      <div class="container">
+        <label for="cuisine">Cuisine Preference</label>
+        <select id="cuisine" required>
+          <option value="" selected>Select a cuisine type...</option>
+          <option>Pizza</option>
+          <option>Burgers</option>
+          <option>Indian</option>
+          <option>Mexican</option>
+          <option>Italian</option>
+          <option>Chinese</option>
+          <option>Vegan</option>
+        </select>
+
+        <label for="rating">Restaurant Rating</label>
+        <select id="rating" required>
+          <option value="" selected>Minimum acceptable rating...</option>
+          <option>2.0</option>
+          <option>2.5</option>
+          <option>3.0</option>
+          <option>3.5</option>
+          <option>4.0</option>
+          <option>4.5</option>
+        </select>
+
+        <fieldset>
+          <legend>Select Any Allergies</legend>
+          <label for="small"><input type="checkbox" id="milk" name="allergy" value="milk" />Milk</label>
+          <label for="eggs"><input type="checkbox" id="eggs" name="allergy" value="eggs" />Eggs</label>
+          <label for="fish"><input type="checkbox" id="fish" name="allergy" value="fish" />Fish</label>
+          <label for="shellfish"><input type="checkbox" id="shellfish" name="allergy"
+              value="shellfish" />Shellfish</label>
+          <label for="tree-nuts"><input type="checkbox" id="tree-nuts" name="allergy" value="tree-nuts" />Tree
+            Nuts</label>
+          <label for="peanuts"><input type="checkbox" id="peanuts" name="allergy" value="peanuts" />Peanuts</label>
+          <label for="wheat"><input type="checkbox" id="wheat" name="allergy" value="wheat" />Wheat</label>
+          <label for="soybeans"><input type="checkbox" id="soybeans" name="allergy" value="soybeans" />Soybeans</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Meat Preferences (if applicable) </legend>
+          <label for="beef"><input type="checkbox" id="beef" name="meat" value="beef" />Beef</label>
+          <label for="pork"><input type="checkbox" id="pork" name="allergy" value="pork" />Pork</label>
+          <label for="chicken"><input type="checkbox" id="chicken" name="allergy" value="chicken" />Chicken</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Spice Level</legend>
+          <label for="mild"><input type="radio" id="mild" name="spice" value="mild" />Mild</label>
+          <label for="medium"><input type="radio" id="medium" name="spice" value="medium" />Medium</label>
+          <label for="hot"><input type="radio" id="hot" name="spice" value="hot" />Hot</label>
+        </fieldset>
+
+        <label for="range">Distance:
+          <span id="range-value">25 miles</span>
+          <input type="range" min="10" max="50" value="25" id="range" name="range" />
+        </label>
+      </div>
+    </form>
+
+    <dialog id="address-dialog">
+      <article>
+        <a href="#close" aria-label="Close" class="close" data-target="address-dialog" onClick="toggleModal(event)">
+        </a>
+        <div id="address">
+          <h3>Enter Your Address</h3>
+          <form>
+            <!-- Grid -->
+            <div class="grid">
+              <!-- Markup example 1: input is inside label -->
+              <label for="firstname">
+                First name
+                <input type="text" id="firstname" name="firstname" placeholder="First name" required>
+              </label>
+
+              <label for="lastname">
+                Last name
+                <input type="text" id="lastname" name="lastname" placeholder="Last name" required>
+              </label>
+
+            </div>
+            <label for="add">Address</label>
+            <input type="text" id="add" name="add" placeholder="Address" required>
+
+            <!-- Select -->
+            <label for="city">City</label>
+            <select id="city" required>
+              <option value="" selected>Select a city…</option>
+              <option>Salt Lake City</option>
+              <option>St George</option>
+              <option>Murray</option>
+              <option>Lehi</option>
+              <option>Provo</option>
+              <option>Ogden</option>
+              <option>Hebber City</option>
+            </select>
+
+            <!-- Select -->
+            <label for="state">State</label>
+            <select id="state" required>
+              <option value="" selected>Select a state…</option>
+              <option>UT</option>
+              <option>MT</option>
+              <option>NY</option>
+              <option>TX</option>
+              <option>FL</option>
+              <option>CO</option>
+              <option>CA</option>
+              <option>WA</option>
+
+            </select>
+
+            <!-- Markup example 2: input is after label -->
+            <label for="zipcode">Zip Code</label>
+            <input type="number" id="zipcode" name="zipcode" placeholder="Zip Code" required>
 
 
-    </main>
+            <!-- Markup example 2: input is after label -->
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="Email address" required>
+            <small>We'll never share your email with anyone else.</small>
 
-    <script src="./script.js"></script>
-  </body>
+            <!-- Markup example 2: input is after label -->
+            <label for="mobile">Mobile Number</label>
+            <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="mobile" name="mobile"
+              placeholder="XXX-XXX-XXXX" required>
+
+            <!-- Button -->
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </article>
+    </dialog>
+    </nav>
+
+
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+
 </html>
-
