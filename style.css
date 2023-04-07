@@ -1,58 +1,16 @@
+[data-theme="dark"] {
+    --primary: #00897b;
+    --primary-hover: #009688;
+    --primary-focus: rgba(0, 137, 123, 0.25);
+    --primary-inverse: #FFF;
+}
+
 [data-theme="light"],
 :root:not([data-theme="dark"]) {
-    --primary: #318a9e;
-    --primary-hover: #0b5b6d;
-    --primary-focus: rgba(12, 8, 10, 0.125);
+    --primary: #00897b;
+    --primary-hover: #00796b;
+    --primary-focus: rgba(0, 137, 123, 0.125);
     --primary-inverse: #FFF;
-
-}
-
-header {
-    background-color: #bfc0c3;
-}
-
-hgroup {
-    background-color: #bfc0c3;
-}
-
-nav {
-    background-color: #949599;
-    text-align: center;
-}
-
-body {
-    background-color: #bfc0c3;
-}
-
-h1 {
-    color: #FFF;
-    font-weight: 600;
-    font-size: 250%;
-    letter-spacing: .5rem;
-}
-
-h2 {
-    color: #FFF;
-    font-weight: 600;
-    font-size: 250%;
-    letter-spacing: .5rem;
-}
-
-h5 {
-    color: #0b5b6d;
-    font-weight: 300;
-    font-size: 85%;
-    letter-spacing: .5rem;
-}
-
-button {
-    font-weight: 300;
-    letter-spacing: .25rem;
-}
-
-nav li {
-    font-weight: 300;
-    letter-spacing: .25rem;
 }
 
 #address {
