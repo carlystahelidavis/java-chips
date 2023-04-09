@@ -28,7 +28,7 @@
 
             </ul>
         </nav>
-        <!-- <dialog open id="modal-example">
+        <dialog open id="modal-example">
         <article>
           <a href="#close"
             aria-label="Close"
@@ -51,7 +51,7 @@
             </a>
           </footer>
         </article>
-      </dialog> -->
+      </dialog>
 </header>
 
 
@@ -136,27 +136,18 @@
             </article>
         </dialog>
 
-        <article>
-            <a href="#close" aria-label="Close" class="close" data-target="modal-example" onClick="toggleModal(event)">
-            </a>
-            <h3>Confirm your action!</h3>
-            <p>
-                Cras sit amet maximus risus.
-                Pellentesque sodales odio sit amet augue finibus pellentesque.
-                Nullam finibus risus non semper euismod.
-            </p>
-            <footer>
-                <a href="#confirm" role="button" data-target="modal-example" onClick="toggleModal(event)">
-                    Ok
+        <dialog id="try-again">
+            <article>
+                <a href="#close" aria-label="Close" class="close" data-target="try-again" onClick="toggleModal(event)">
                 </a>
-            </footer>
-        </article>
-
-
-
-
-
-
+                <h3>Sorry, no restaurants found matching your criteria.</h3>
+                <footer>
+                    <a href="#confirm" role="button" data-target="try-again" onClick="toggleModal(event)">
+                        Ok
+                    </a>
+                </footer>
+            </article>
+        </dialog>
 
         <!--Ever's section ends-->
 
