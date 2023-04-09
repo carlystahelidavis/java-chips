@@ -24,8 +24,8 @@
     </ul>
     <nav>
       <ul>
+        <li><a id="homeButton" href="#" role="button">Home</a></li>
         <li><button data-target="address-dialog" onClick="toggleModal(event)">Delivery Address</button></li>
-        <li><a href="#" role="button">Home</a></li>
         <li><a href="#" role="button">Previous Orders</a></li>
 
       </ul>
@@ -123,8 +123,10 @@
         </p>
         <p id="dishName">
         </p>
+        <p id="time">
+        </p>
         <footer>
-          <a href="#confirm" role="button" data-target="order-submitted" onClick="toggleModal(event)">
+          <a id="orderConfirmed" href="#confirm" role="button" data-target="order-submitted" onClick="toggleModal(event)">
             Ok
           </a>
         </footer>
@@ -137,7 +139,7 @@
         </a>
         <h3>Sorry, no restaurants found matching your criteria.</h3>
         <footer>
-          <a href="#confirm" role="button" data-target="try-again" onClick="toggleModal(event)">
+          <a id="tryAgain" href="#confirm" role="button" data-target="try-again" onClick="toggleModal(event)">
             Ok
           </a>
         </footer>
@@ -239,29 +241,6 @@
     <!-- Nishanthi's Address page ends here! -->
     </nav>
 
-    <!-- Nishanthi's Order Confirmation page starts here! -->
-    <button data-target="confirmation-dialog" onClick="toggleModal(event)">Show Confirmation</button>
-
-    <!--order confirmation-->
-    <dialog id="confirmation-dialog">
-      <article>
-        <a href="#close" aria-label="Close" class="close" data-target="confirmation-dialog"
-          onClick="toggleModal(event)">
-        </a>
-
-        <div id="confirmation">
-          <h3>Order Confirmation</h3>
-          <h2> Order ID # 1234</h2>
-          <p>Thanks John Doe!</p>
-          <p>Your order is getting ready,we will deliver your order at 123 state st,salt lake city,UT 85101
-          </p>
-
-          <p>Estimated delivery time: 20 to 25 mins</p>
-
-        </div>
-      </article>
-    </dialog>
-    <!-- Nishanthi's Order Confirmation page ends here! -->
   </main>
 
   <script src="./script.js"></script>

@@ -7,7 +7,8 @@ const openingClass = 'modal-is-opening';
 const closingClass = 'modal-is-closing';
 const animationDuration = 400; // ms
 let visibleModal = null;
-var localTime = dayjs().format('hh:mm');
+var localTime = dayjs();
+var pickUpTime = localTime.add(30, 'minute').format('hh:mm');
 
 // Toggle modal
 const toggleModal = event => {
@@ -185,6 +186,7 @@ var restaurantName = document.querySelector("#restaurantName");
 var dishName = document.querySelector("#dishName");
 var tryAgain = document.querySelector("#try-again");
 var thankYou = document.querySelector("#thank-you");
+var time = document.querySelector("#time");
 
 
 submitOrder.addEventListener('click', function (event) {
@@ -306,7 +308,28 @@ function filter(data) {
   var confirmDish = localStorage.getItem("Dish");
   thankYou.textContent = "Thank you, " + localStorage.getItem("firstname") + " " + localStorage.getItem("lastname");
   restaurantName.textContent = "Your order has been sent to " + confirmRestaurant + " located at " + data.address;
-  dishName.textContent = "Menu Item: " + confirmDish;
+  dishName.textContent = "Food item ordered: " + confirmDish;
+  time.textContent = "Your order will be ready for pickup at: " + pickUpTime;
   orderProcessing.setAttribute("open", false);
 }
+
+document.querySelector("#tryAgain").addEventListener('click', function () {
+  preferences.reset();
+});
+
+document.querySelector("#orderConfirmed").addEventListener('click', function () {
+  preferences.reset();
+  home.setAttribute("style", "display: block");
+  preferences.setAttribute("style", "display: none");
+});
+
+document.querySelector('#homeButton').addEventListener('click', function (){
+    preferences.reset();
+    preferences.setAttribute('style', 'display: none');
+    home.setAttribute('style', 'display: block');
+
+}) 
+
+
+
 
