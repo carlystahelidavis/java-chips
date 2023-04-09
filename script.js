@@ -133,6 +133,7 @@ var longitude = "-111.876183";
 var distance = document.querySelector("#range-value").value;
 var minRating = document.querySelector("#rating").value;
 var restaurantsArray = [];
+var orderProcessing = document.querySelector("#order-processing")
 var submitOrder = document.querySelector("#submitOrder");
 
 
@@ -248,5 +249,7 @@ function filter(data) {
       getItem(selectedRestaurant);
     }
   }
+
+
 }
 
