@@ -3,10 +3,12 @@
 
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
-  <link rel="stylesheet" href="./style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
 </head>
 
 <header>
@@ -28,7 +30,7 @@
 
       </ul>
     </nav>
-    <dialog open id="modal-example">
+    <!-- <dialog open id="modal-example">
       <article>
         <a href="#close" aria-label="Close" class="close" data-target="modal-example" onClick="toggleModal(event)">
         </a>
@@ -45,7 +47,7 @@
           </a>
         </footer>
       </article>
-    </dialog>
+    </dialog> -->
 </header>
 
 
@@ -116,7 +118,7 @@
       <article>
         <a href="#close" aria-label="Close" class="close" data-target="order-submitted" onClick="toggleModal(event)">
         </a>
-        <h3>Your order has been submitted!</h3>
+        <h3 id="thank-you">Your order has been submitted!</h3>
         <p id="restaurantName">
         </p>
         <p id="dishName">

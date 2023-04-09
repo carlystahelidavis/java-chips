@@ -1,13 +1,13 @@
 
 // Config
-var latitude = "40.758701";
-var longitude = "-111.876183";
+var latitude = localStorage.getItem("latitude");
+var longitude = localStorage.getItem("longitude");
 const isOpenClass = 'modal-is-open';
 const openingClass = 'modal-is-opening';
 const closingClass = 'modal-is-closing';
 const animationDuration = 400; // ms
 let visibleModal = null;
-
+var localTime = dayjs().format('hh:mm');
 
 // Toggle modal
 const toggleModal = event => {
@@ -184,6 +184,7 @@ var orderSubmitted = document.querySelector("#order-submitted");
 var restaurantName = document.querySelector("#restaurantName");
 var dishName = document.querySelector("#dishName");
 var tryAgain = document.querySelector("#try-again");
+var thankYou = document.querySelector("#thank-you");
 
 
 submitOrder.addEventListener('click', function (event) {
@@ -287,7 +288,6 @@ function getItem(selectedRestaurant) {
 function filter(data) {
   var dishes = data.dishes;
 
-
   if (dishes.length > 0) {
     var index = Math.floor(Math.random() * dishes.length);
     var randomDish = dishes[index];
@@ -304,8 +304,9 @@ function filter(data) {
   }
   var confirmRestaurant = localStorage.getItem("Restaurant");
   var confirmDish = localStorage.getItem("Dish");
-  orderProcessing.setAttribute('open', false);
-  restaurantName.textContent = "Restaurant: " + confirmRestaurant;
+  thankYou.textContent = "Thank you, " + localStorage.getItem("firstname") + " " + localStorage.getItem("lastname");
+  restaurantName.textContent = "Your order has been sent to " + confirmRestaurant + " located at " + data.address;
   dishName.textContent = "Menu Item: " + confirmDish;
+  orderProcessing.setAttribute("open", false);
 }
 
