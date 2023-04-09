@@ -1,3 +1,19 @@
+//* global variables*//
+var range = document.getElementById("range");
+var rangeValue = document.getElementById("range-value");
+var home = document.querySelector("#home-page");
+var start = document.querySelector("#start-button");
+var preferences = document.querySelector("#preferences-page");
+var previousOrders = document.querySelector('#previous-orders');
+var latitude = "40.758701";
+var longitude = "-111.876183";
+var restaurantsArray = [];
+var orderProcessing = document.querySelector("#order-processing");
+var submitOrder = document.querySelector("#submitOrder");
+var orderSubmitted = document.querySelector("#order-submitted");
+var restaurantName = document.querySelector("#restaurantName");
+var dishName = document.querySelector("#dishName");
+var tryAgain = document.querySelector("#try-again");
 
 // Config
 const isOpenClass = 'modal-is-open';
@@ -43,13 +59,6 @@ const closeModal = modal => {
     modal.removeAttribute('open');
   }, animationDuration);
 }
-
-
-var range = document.getElementById("range");
-var rangeValue = document.getElementById("range-value");
-var home = document.querySelector("#home-page");
-var start = document.querySelector("#start-button");
-var preferences = document.querySelector("#preferences-page");
 
 range.addEventListener("input", function () {
   rangeValue.textContent = range.value + ' miles';
@@ -119,35 +128,21 @@ function getLatLon() {
     }
   };
 
-  fetch('https://address-from-to-latitude-longitude.p.rapidapi.com/geolocationapi?address='+encode, options)
+  fetch('https://address-from-to-latitude-longitude.p.rapidapi.com/geolocationapi?address=' + encode, options)
     .then(response => response.json())
     .then(response => console.log(response))
     .catch(err => console.error(err));
 }
-
-
-
-/////////////////////////////////////////////////-restaurant API begins //////////////////////
-var latitude = "40.758701";
-var longitude = "-111.876183";
-var restaurantsArray = [];
-var orderProcessing = document.querySelector("#order-processing");
-var submitOrder = document.querySelector("#submitOrder");
-var orderSubmitted = document.querySelector("#order-submitted");
-var restaurantName = document.querySelector("#restaurantName");
-var dishName = document.querySelector("#dishName");
-var tryAgain = document.querySelector("#try-again");
-
-
-submitOrder.addEventListener ('click',  function (event) {
+/////////////////////////////////////////////////-restaurant API begins /////////////////////
+submitOrder.addEventListener('click', function (event) {
   event.preventDefault();
   var cuisineSelected = document.querySelector("#cuisineSelected");
   var cuisinePreference = cuisineSelected.value;
   var distanceSelected = document.querySelector("#range");
   var distance = distanceSelected.value;
-  var minRatingSelected  = document.querySelector("#rating");
+  var minRatingSelected = document.querySelector("#rating");
   var minRating = minRatingSelected.value;
-  console.log(cuisinePreference + distance + minRating) ;
+  console.log(cuisinePreference + distance + minRating);
   var URL =
     "https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=" +
     latitude +
@@ -196,8 +191,8 @@ function getCuisine(restaurantID, restaurantCuisine) {
 function getDetail(restaurant, cuisineArray) {
   var cuisineName = cuisineArray[0].name;
   var restaurantOptions = restaurant;
-    var cuisineSelected = document.querySelector("#cuisineSelected");
-    var cuisinePreference = cuisineSelected.value;
+  var cuisineSelected = document.querySelector("#cuisineSelected");
+  var cuisinePreference = cuisineSelected.value;
   if (cuisineName === cuisinePreference) {
     if (!restaurantsArray.includes(restaurantOptions)) {
       restaurantsArray.push([restaurantOptions]);
@@ -212,10 +207,11 @@ function randomRestaurant() {
   if (restaurantsArray.length === 0) {
     orderProcessing.setAttribute('open', false);
     tryAgain.setAttribute('open', true);
-  } else {;
-  console.log(selectedRestaurant);
-  
-  getItem(selectedRestaurant);
+  } else {
+    ;
+    console.log(selectedRestaurant);
+
+    getItem(selectedRestaurant);
   }
 }
 
@@ -256,8 +252,20 @@ function filter(data) {
   }
   var confirmRestaurant = localStorage.getItem("Restaurant");
   var confirmDish = localStorage.getItem("Dish");
-orderProcessing.setAttribute('open', false);
-restaurantName.textContent = "Restaurant: " + confirmRestaurant;
-dishName.textContent = "Menu Item: " + confirmDish;
+  orderProcessing.setAttribute('open', false);
+  restaurantName.textContent = "Restaurant: " + confirmRestaurant;
+  dishName.textContent = "Menu Item: " + confirmDish;
 }
+
+//*function to get past orders from the button*//
+function getPastOrders() {
+  var pastDishes = localStorage.getItem("Dish");
+  var pastRestaurants = localStorage.getItem("Restaurant");
+  localStorage.setItem(pastDishes, pastRestaurants);
+  var pastDishesAndRestaurantsEL = document.createElement("p");
+  pastDishesAndRestaurantsEL.textContent = `${pastDishes} - ${pastRestaurants}`;
+  previousOrders.appendChild(pastDishesAndRestaurantsEL);
+};
+
+getPastOrders();
 
