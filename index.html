@@ -28,7 +28,7 @@
      
       </ul>
     </nav>
-    <dialog open id="modal-example">
+    <!-- <dialog open id="modal-example">
         <article>
           <a href="#close"
             aria-label="Close"
@@ -51,7 +51,7 @@
             </a>
           </footer>
         </article>
-      </dialog>
+      </dialog> -->
 </header>
 
 
@@ -78,58 +78,33 @@
         <h2 class="container">Preferences</h2>
         <div class="container">
           <label for="cuisine">Cuisine Preference</label>
-          <select id="cuisine" required>
-            <option value="" selected>Select a cuisine type...</option>
-            <option>Pizza</option>
-            <option>Burgers</option>
-            <option>Indian</option>
-            <option>Mexican</option>
-            <option>Italian</option>
-            <option>Chinese</option>
-            <option>Vegan</option>
+          <select id="cuisineSelected" required>
+            <option value="" selected>Select a cuisine type...</option> 
+            <option value="pizza">Pizza</option>
+            <option value="American">American</option>
+            <option value="mexican">Mexican</option>
+            <option value="italian">Italian</option>
+            <option value="chinese">Chinese</option>
           </select>
 
           <label for="rating">Restaurant Rating</label>
           <select id="rating" required>
             <option value="" selected>Minimum acceptable rating...</option>
-            <option>2.0</option>
+            <option>2</option>
             <option>2.5</option>
-            <option>3.0</option>
+            <option>3</option>
             <option>3.5</option>
-            <option>4.0</option>
+            <option>4</option>
             <option>4.5</option>
           </select>
 
-        <fieldset>
-            <legend>Select Any Allergies</legend>
-            <label for="small"><input type="checkbox" id="milk" name="allergy" value="milk"/>Milk</label>
-            <label for="eggs"><input type="checkbox" id="eggs" name="allergy" value="eggs"/>Eggs</label>
-            <label for="fish"><input type="checkbox" id="fish" name="allergy" value="fish"/>Fish</label>
-            <label for="shellfish"><input type="checkbox" id="shellfish" name="allergy" value="shellfish"/>Shellfish</label>
-            <label for="tree-nuts"><input type="checkbox" id="tree-nuts" name="allergy" value="tree-nuts"/>Tree Nuts</label>
-            <label for="peanuts"><input type="checkbox" id="peanuts" name="allergy" value="peanuts"/>Peanuts</label>
-            <label for="wheat"><input type="checkbox" id="wheat" name="allergy" value="wheat"/>Wheat</label>
-            <label for="soybeans"><input type="checkbox" id="soybeans" name="allergy" value="soybeans"/>Soybeans</label>
-        </fieldset>
-
-        <fieldset>
-            <legend>Meat Preferences (if applicable) </legend>
-            <label for="beef"><input type="checkbox" id="beef" name="meat" value="beef"/>Beef</label>
-            <label for="pork"><input type="checkbox" id="pork" name="allergy" value="pork" />Pork</label>
-            <label for="chicken"><input type="checkbox" id="chicken" name="allergy" value="chicken" />Chicken</label>
-        </fieldset>
-
-        <fieldset>
-            <legend>Spice Level</legend>
-            <label for="mild"><input type="radio" id="mild" name="spice" value="mild"/>Mild</label>
-            <label for="medium"><input type="radio" id="medium" name="spice" value="medium"/>Medium</label>
-            <label for="hot"><input type="radio" id="hot" name="spice" value="hot"/>Hot</label>
-        </fieldset>
-
-                <label for="range">Distance: 
-            <span id="range-value">25 miles</span>
-            <input type="range" min="10" max="50" value="25" id="range" name="range" />
-        </label>
+            <label for="range">Distance:
+                <span id="range-value">25 miles</span>
+                <input type="range" min="10" max="50" value="25" id="range" name="range" />
+            </label>
+        </div>
+        <div>
+            <button id="submitOrder" type="submit">Submit Order</button>
         </div>
       </form> <!--Ever's section ends-->
 

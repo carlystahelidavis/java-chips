@@ -124,3 +124,129 @@ function getLatLon() {
     .then(response => console.log(response))
     .catch(err => console.error(err));
 }
+
+
+
+/////////////////////////////////////////////////-restaurant API begins //////////////////////
+var latitude = "40.758701";
+var longitude = "-111.876183";
+var distance = document.querySelector("#range-value").value;
+var minRating = document.querySelector("#rating").value;
+var restaurantsArray = [];
+var submitOrder = document.querySelector("#submitOrder");
+
+
+submitOrder.addEventListener ('click',  function (event) {
+  event.preventDefault();
+  var cuisineSelected = document.querySelector("#cuisineSelected");
+  var cuisinePreference = cuisineSelected.value;
+  var distanceSelected = document.querySelector("#range");
+  var distance = distanceSelected.value;
+  var minRatingSelected  = document.querySelector("#rating");
+  var minRating = minRatingSelected.value;
+  console.log(cuisinePreference + distance + minRating) ;
+  var URL =
+    "https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=" +
+    latitude +
+    "&longitude=" +
+    longitude +
+    "&limit=50&currency=USD&distance=" +
+    distance +
+    "&open_now=false&lunit=km&lang=en_US&min_rating=" +
+    minRating +
+    "&rapidapi-key=00f9c8e49fmshe497b54f0a15c1ap147920jsn29c568417b24&rapidapi-host=travel-advisor.p.rapidapi.com";
+  fetch(URL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      checkCuisine(data.data);
+    });
+})
+
+function checkCuisine(data) {
+  for (i = 0; i < data.length; i++) {
+    var restaurantData = data[i];
+
+    if (restaurantData.hasOwnProperty("cuisine")) {
+      var restaurantCuisine = restaurantData.cuisine;
+      var restaurantID = restaurantData.location_id;
+
+      getCuisine(restaurantID, restaurantCuisine);
+    }
+  }
+
+  randomRestaurant();
+}
+
+function getCuisine(restaurantID, restaurantCuisine) {
+  var cuisineData = restaurantCuisine;
+  var restaurant = restaurantID;
+
+  if (cuisineData.length > 0) {
+    var cuisineArray = cuisineData;
+    getDetail(restaurant, cuisineArray);
+  }
+}
+
+function getDetail(restaurant, cuisineArray) {
+  var cuisineName = cuisineArray[0].name;
+  var restaurantOptions = restaurant;
+    var cuisineSelected = document.querySelector("#cuisineSelected");
+    var cuisinePreference = cuisineSelected.value;
+  if (cuisineName === cuisinePreference) {
+    if (!restaurantsArray.includes(restaurantOptions)) {
+      restaurantsArray.push([restaurantOptions]);
+    }
+  }
+}
+
+function randomRestaurant() {
+  var index = Math.floor(Math.random() * restaurantsArray.length);
+  var selectedRestaurant = restaurantsArray[index];
+
+  if (restaurantsArray.length === 0) {
+    console.log("Sorry, no restaurants found matching your criteria.");
+  } else {;
+  console.log(selectedRestaurant);
+  
+  getItem(selectedRestaurant);
+  }
+}
+
+function getItem(selectedRestaurant) {
+  var id = selectedRestaurant;
+  var detailsURL =
+    "https://travel-advisor.p.rapidapi.com/restaurants/get-details?location_id=" +
+    id +
+    "&currency=USD&lang=en_US&rapidapi-key=00f9c8e49fmshe497b54f0a15c1ap147920jsn29c568417b24&rapidapi-host=travel-advisor.p.rapidapi.com";
+
+  fetch(detailsURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      filter(data);
+    });
+}
+
+function filter(data) {
+  var dishes = data.dishes;
+
+  if (dishes.length > 0) {
+    var index = Math.floor(Math.random() * dishes.length);
+    var randomDish = dishes[index];
+    localStorage.setItem("Restaurant", data.name);
+    localStorage.setItem("Dish", randomDish.name);
+    console.log(randomDish.name);
+  } else {
+    var selectedRestaurant = restaurantsArray.shift();
+    if (selectedRestaurant) {
+      console.log("No dishes found for the selected restaurant, trying another one...");
+      getItem(selectedRestaurant);
+    }
+  }
+}
+
