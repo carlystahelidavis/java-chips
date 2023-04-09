@@ -1,5 +1,7 @@
 
 // Config
+var latitude = "40.758701";
+var longitude = "-111.876183";
 const isOpenClass = 'modal-is-open';
 const openingClass = 'modal-is-opening';
 const closingClass = 'modal-is-closing';
@@ -17,7 +19,15 @@ const toggleModal = event => {
 
 // Is modal open
 const isModalOpen = modal => {
-  return modal.hasAttribute('open') && modal.getAttribute('open') != 'false' ? true : false;
+  var storedAddress = localStorage.getItem("address");
+  if (storedAddress != 'undefined' && storedAddress != null && storedAddress.length > 0) {
+    return modal.hasAttribute('open') && modal.getAttribute('open') != 'false' ? true : false;
+  } else {
+    const modal = document.getElementById('address-dialog');
+    openModal(modal);
+    closeModal(document.getElementById('modal-example'));
+  }
+
 }
 
 // Open modal
@@ -42,6 +52,7 @@ const closeModal = modal => {
     document.documentElement.style.removeProperty('--scrollbar-width');
     modal.removeAttribute('open');
   }, animationDuration);
+
 }
 
 
@@ -92,6 +103,7 @@ const getScrollbarWidth = () => {
   return scrollbarWidth;
 }
 
+/* Nishanthi Govindasamy - Get List of Restaurants from Rapid API */
 function getRestaurantList() {
   const options = {
     method: 'GET',
@@ -106,10 +118,12 @@ function getRestaurantList() {
     .then(response => console.log(response))
     .catch(err => console.error(err));
 }
+
+/* Nishanthi Govindasamy - Get Latitude and Longitude information from Rapid API */
 function getLatLon() {
 
-  var address = "537 W 600 S, Salt Lake City, UT 84101";
-  var encode = encodeURIComponent(address);
+  var address = localStorage.getItem("address");// eg:"537 W 600 S, Salt Lake City, UT 84101";
+  var encode = encodeURIComponent(address); // to escape spaces in the url
 
   const options = {
     method: 'GET',
@@ -119,17 +133,50 @@ function getLatLon() {
     }
   };
 
-  fetch('https://address-from-to-latitude-longitude.p.rapidapi.com/geolocationapi?address='+encode, options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
+  fetch('https://address-from-to-latitude-longitude.p.rapidapi.com/geolocationapi?address=' + encode, options)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (response) {
+      console.log(response);
+      if (response.Results.length > 0) {
+        console.log(response.Results[0]);
+        latitude = response.Results[0].latitude;
+        longitude = response.Results[0].longitude;
+        console.log("latitude: " + latitude);
+        console.log("longitude: " + longitude);
+      }
+
+    });
 }
 
 
+/* Nishanthi Govindasamy - Save Address to Local Storage(address) */
+function saveAddress() {
+
+  var firstName = document.querySelector("#firstname").value;
+  var lastName = document.querySelector("#lastname").value;
+  var streetAddress = document.querySelector("#staddress").value;
+  var city = document.querySelector("#city").value;
+  var state = document.querySelector("#state").value;
+  var zipcode = document.querySelector("#zipcode").value;
+  var email = document.querySelector("#email").value;
+  var mobile = document.querySelector("#mobile").value;
+  var address = streetAddress + ", " + city + ", " + state + " " + zipcode;
+  console.log("Address: " + address);
+
+  localStorage.setItem("firstname", firstName);
+  localStorage.setItem("lastname", lastName);
+  localStorage.setItem("address", address);
+  localStorage.setItem("mobile", mobile);
+  localStorage.setItem("email", email);
+
+  getLatLon(); // setting latitude and longitude in variables after saving in local storage
+}
+
 
 /////////////////////////////////////////////////-restaurant API begins //////////////////////
-var latitude = "40.758701";
-var longitude = "-111.876183";
+
 var restaurantsArray = [];
 var orderProcessing = document.querySelector("#order-processing");
 var submitOrder = document.querySelector("#submitOrder");
@@ -139,15 +186,15 @@ var dishName = document.querySelector("#dishName");
 var tryAgain = document.querySelector("#try-again");
 
 
-submitOrder.addEventListener ('click',  function (event) {
+submitOrder.addEventListener('click', function (event) {
   event.preventDefault();
   var cuisineSelected = document.querySelector("#cuisineSelected");
   var cuisinePreference = cuisineSelected.value;
   var distanceSelected = document.querySelector("#range");
   var distance = distanceSelected.value;
-  var minRatingSelected  = document.querySelector("#rating");
+  var minRatingSelected = document.querySelector("#rating");
   var minRating = minRatingSelected.value;
-  console.log(cuisinePreference + distance + minRating) ;
+  console.log(cuisinePreference + distance + minRating);
   var URL =
     "https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=" +
     latitude +
@@ -196,8 +243,8 @@ function getCuisine(restaurantID, restaurantCuisine) {
 function getDetail(restaurant, cuisineArray) {
   var cuisineName = cuisineArray[0].name;
   var restaurantOptions = restaurant;
-    var cuisineSelected = document.querySelector("#cuisineSelected");
-    var cuisinePreference = cuisineSelected.value;
+  var cuisineSelected = document.querySelector("#cuisineSelected");
+  var cuisinePreference = cuisineSelected.value;
   if (cuisineName === cuisinePreference) {
     if (!restaurantsArray.includes(restaurantOptions)) {
       restaurantsArray.push([restaurantOptions]);
@@ -212,10 +259,11 @@ function randomRestaurant() {
   if (restaurantsArray.length === 0) {
     orderProcessing.setAttribute('open', false);
     tryAgain.setAttribute('open', true);
-  } else {;
-  console.log(selectedRestaurant);
-  
-  getItem(selectedRestaurant);
+  } else {
+    ;
+    console.log(selectedRestaurant);
+
+    getItem(selectedRestaurant);
   }
 }
 
@@ -256,8 +304,8 @@ function filter(data) {
   }
   var confirmRestaurant = localStorage.getItem("Restaurant");
   var confirmDish = localStorage.getItem("Dish");
-orderProcessing.setAttribute('open', false);
-restaurantName.textContent = "Restaurant: " + confirmRestaurant;
-dishName.textContent = "Menu Item: " + confirmDish;
+  orderProcessing.setAttribute('open', false);
+  restaurantName.textContent = "Restaurant: " + confirmRestaurant;
+  dishName.textContent = "Menu Item: " + confirmDish;
 }
 
