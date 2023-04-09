@@ -133,8 +133,11 @@ var longitude = "-111.876183";
 var distance = document.querySelector("#range-value").value;
 var minRating = document.querySelector("#rating").value;
 var restaurantsArray = [];
-var orderProcessing = document.querySelector("#order-processing")
+var orderProcessing = document.querySelector("#order-processing");
 var submitOrder = document.querySelector("#submitOrder");
+var orderSubmitted = document.querySelector("#order-submitted");
+var restaurantName = document.querySelector("#restaurantName");
+var dishName = document.querySelector("#dishName")
 
 
 submitOrder.addEventListener ('click',  function (event) {
@@ -236,12 +239,14 @@ function getItem(selectedRestaurant) {
 function filter(data) {
   var dishes = data.dishes;
 
+
   if (dishes.length > 0) {
     var index = Math.floor(Math.random() * dishes.length);
     var randomDish = dishes[index];
     localStorage.setItem("Restaurant", data.name);
     localStorage.setItem("Dish", randomDish.name);
     console.log(randomDish.name);
+    orderSubmitted.setAttribute("open", true);
   } else {
     var selectedRestaurant = restaurantsArray.shift();
     if (selectedRestaurant) {
@@ -249,6 +254,11 @@ function filter(data) {
       getItem(selectedRestaurant);
     }
   }
+  var confirmRestaurant = localStorage.getItem("Restaurant");
+  var confirmDish = localStorage.getItem("Dish");
+orderProcessing.setAttribute("style", "display: none");
+restaurantName.textContent = "Restaurant: " + confirmRestaurant;
+dishName.textContent = "Menu Item: " + confirmDish;
 
 
 }

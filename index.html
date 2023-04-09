@@ -80,7 +80,6 @@
                 <label for="cuisine">Cuisine Preference</label>
                 <select id="cuisineSelected" required>
                     <option value="" selected>Select a cuisine type...</option>
-                    <option value="pizza">Pizza</option>
                     <option value="American">American</option>
                     <option value="mexican">Mexican</option>
                     <option value="italian">Italian</option>
@@ -104,53 +103,54 @@
                 </label>
             </div>
             <div>
-                <button data-target="order-processing" onclick="toggleModal(event)" id="submitOrder" type="submit">Submit Order</button>
+                <button data-target="order-processing" onclick="toggleModal(event)" id="submitOrder"
+                    type="submit">Submit Order</button>
             </div>
         </form>
+
 
         <!-- Modal -->
         <dialog id="order-processing">
             <article aria-busy="true">
-                <a href="#close" aria-label="Close" class="close" data-target="order-confirmation"
-                    onClick="toggleModal(event)">
+                <a href="#close" onClick="toggleModal(event)">
                 </a>
                 <h3>Processing your order</h3>
             </article>
-         </dialog>
+        </dialog>
 
+        <dialog  id="order-submitted">
             <article>
-                <a href="#close" aria-label="Close" class="close" data-target="Sorry, no restaurants found matching your criteria."
+                <a href="#close" aria-label="Close" class="close" data-target="order-submitted"
                     onClick="toggleModal(event)">
                 </a>
-                <h3>Confirm your action!</h3>
-                <p>
-                    Cras sit amet maximus risus.
-                    Pellentesque sodales odio sit amet augue finibus pellentesque.
-                    Nullam finibus risus non semper euismod.
+                <h3>Your order has been submitted!</h3>
+                <p id="restaurantName">
+                </p>
+                <p id="dishName">
                 </p>
                 <footer>
-                    <a href="#confirm" role="button" data-target="modal-example" onClick="toggleModal(event)">
+                    <a href="#confirm" role="button" data-target="order-submitted" onClick="toggleModal(event)">
                         Ok
                     </a>
                 </footer>
             </article>
-            
-            <article>
-                <a href="#close" aria-label="Close" class="close" data-target="modal-example"
-                    onClick="toggleModal(event)">
+        </dialog>
+
+        <article>
+            <a href="#close" aria-label="Close" class="close" data-target="modal-example" onClick="toggleModal(event)">
+            </a>
+            <h3>Confirm your action!</h3>
+            <p>
+                Cras sit amet maximus risus.
+                Pellentesque sodales odio sit amet augue finibus pellentesque.
+                Nullam finibus risus non semper euismod.
+            </p>
+            <footer>
+                <a href="#confirm" role="button" data-target="modal-example" onClick="toggleModal(event)">
+                    Ok
                 </a>
-                <h3>Confirm your action!</h3>
-                <p>
-                    Cras sit amet maximus risus.
-                    Pellentesque sodales odio sit amet augue finibus pellentesque.
-                    Nullam finibus risus non semper euismod.
-                </p>
-                <footer>
-                    <a href="#confirm" role="button" data-target="modal-example" onClick="toggleModal(event)">
-                        Ok
-                    </a>
-                </footer>
-            </article>
+            </footer>
+        </article>
 
 
 
