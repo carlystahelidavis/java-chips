@@ -22,6 +22,6 @@ img {
 
 }
 
-#preferences-page {
+#preferences-page { /*default state for preferences page*/
     display: none;
 }
