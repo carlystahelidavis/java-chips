@@ -1,25 +1,20 @@
 #address {
     width: 500px;
-    }
-
-#address{
-   width:500px;
 }
-   
- 
 
-
-
+#address {
+    width: 500px;
+}
 
 img {
-    height: 400px;
+    width: 800px;
+    height: 550px;
+    object-fit: cover;
     background-position: center;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     margin: auto;
-    border: 10px solid;
-
 }
 
 #preferences-page { /*default state for preferences page*/
