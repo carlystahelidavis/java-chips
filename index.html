@@ -3,21 +3,27 @@
 
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
-  <link rel="stylesheet" href="./style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+
 </head>
 <!--header-->
 <header>
   <hgroup>
     <h1 id="home">FOODLETTE</h1>
     <h5>The Best Form of Roulette</h5>
+
   </hgroup>
   <nav>
     <ul>
       <h2>
+
         <li>FOODLETTE</li>
+
       </h2>
     </ul>
     <nav>
@@ -25,7 +31,6 @@
         <li><button data-target="address-dialog" onClick="toggleModal(event)">Address</button></li>
         <li><button data-target="home">Home</button></li>
         <li><button data-target="previousOrders-dialog" onClick="toggleModal(event)">Previous Orders</button></li>
-
       </ul>
     </nav>
     <dialog open id="modal-example">
@@ -53,11 +58,13 @@
 <body>
   <main>
     <div id="home-page">
+
       <img src="./assets/IMG_1408.jpeg" alt="FrontImg" />
       <!-- Link Ever's Preferences page here! -->
       <button id="start-button">Start Your Order Here!</button>
       <blockquote>
         "Wow! This program changed my life forever! Now that I have experienced Food-lette I will never go back!"
+
         <footer>
           <cite>- Tommy</cite>
         </footer>
@@ -67,7 +74,6 @@
             <cite>- Billy</cite>
           </footer>
         </blockquote>
-      </blockquote>
     </div>
     <form id="preferences-page"> <!--Ever's section begins-->
       <h2 class="container">Preferences</h2>
@@ -117,13 +123,16 @@
       <article>
         <a href="#close" aria-label="Close" class="close" data-target="order-submitted" onClick="toggleModal(event)">
         </a>
-        <h3>Your order has been submitted!</h3>
+
+        <h3 id="thank-you">Your order has been submitted!</h3>
         <p id="restaurantName">
         </p>
         <p id="dishName">
         </p>
+        <p id="time">
+        </p>
         <footer>
-          <a href="#confirm" role="button" data-target="order-submitted" onClick="toggleModal(event)">
+          <a id="orderConfirmed" href="#confirm" role="button" data-target="order-submitted" onClick="toggleModal(event)">
             Ok
           </a>
         </footer>
@@ -136,7 +145,8 @@
         </a>
         <h3>Sorry, no restaurants found matching your criteria.</h3>
         <footer>
-          <a href="#confirm" role="button" data-target="try-again" onClick="toggleModal(event)">
+          <a id="tryAgain" href="#confirm" role="button" data-target="try-again" onClick="toggleModal(event)">
+
             Ok
           </a>
         </footer>
@@ -144,6 +154,9 @@
     </dialog>
 
     <!--Ever's section ends-->
+
+
+    <!-- Nishanthi's Address page starts here! -->
 
     <dialog id="address-dialog">
       <article>
@@ -157,11 +170,14 @@
             <!-- Grid -->
             <div class="grid">
 
-              <!-- Markup example 1: input is inside label -->
+
+              <!-- First name -->
               <label for="firstname">
                 First name
                 <input type="text" id="firstname" name="firstname" placeholder="First name" required>
               </label>
+
+              <!-- Last name-->
 
               <label for="lastname">
                 Last name
@@ -169,11 +185,13 @@
               </label>
 
 
-            </div>
-            <label for="add">Address</label>
-            <input type="text" id="add" name="add" placeholder="Address" required>
 
-            <!-- Select -->
+            <!-- Street Address -->
+            <label for="staddress">Address</label>
+            <input type="text" id="staddress" name="staddress" placeholder="Address" required>
+
+            <!-- Select city -->
+
             <label for="city">City</label>
             <select id="city" required>
               <option value="" selected>Select a city…</option>
@@ -184,9 +202,12 @@
               <option>Provo</option>
               <option>Ogden</option>
               <option>Hebber City</option>
+              <option>Herriman</option>
+              <option>Riverton</option>
             </select>
 
-            <!-- Select -->
+            <!-- Select state -->
+
             <label for="state">State</label>
             <select id="state" required>
               <option value="" selected>Select a state…</option>
@@ -199,54 +220,45 @@
               <option>CA</option>
               <option>WA</option>
 
+              <option>ID</option>
+
             </select>
 
-            <!-- Markup example 2: input is after label -->
+            <!-- Zipcode -->
+
             <label for="zipcode">Zip Code</label>
             <input type="number" id="zipcode" name="zipcode" placeholder="Zip Code" required>
 
 
-            <!-- Markup example 2: input is after label -->
+            <!-- Email -->
+
             <label for="email">Email address</label>
             <input type="email" id="email" name="email" placeholder="Email address" required>
             <small>We'll never share your email with anyone else.</small>
 
-            <!-- Markup example 2: input is after label -->
+            <!-- Mobile -->
             <label for="mobile">Mobile Number</label>
             <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="mobile" name="mobile"
               placeholder="XXX-XXX-XXXX" required>
-
-            <!-- Button -->
-            <button type="submit">Submit</button>
           </form>
+          <!-- Button -->
+          <footer>
+            <a href="#confirm" role="button" data-target="address-dialog" onClick="saveAddress();toggleModal(event)">
+              Submit
+            </a>
+            <a href="#cancel" role="button" class="secondary">Cancel</a>
+
+          </footer>
+
+
         </div>
       </article>
     </dialog>
+
+
+    <!-- Nishanthi's Address page ends here! -->
     </nav>
-    <button data-target="confirmation-dialog" onClick="toggleModal(event)">Show Confirmation</button>
-
-    <!--order confirmation-->
-    <dialog id="confirmation-dialog">
-      <article>
-        <a href="#close" aria-label="Close" class="close" data-target="confirmation-dialog"
-          onClick="toggleModal(event)">
-        </a>
-
-        <div id="confirmation">
-          <h3>Order Confirmation</h3>
-          <h2> Order ID # 1234</h2>
-          <p>Thanks John Doe!</p>
-          <p>Your order is getting ready,we will deliver your order at 123 state st,salt lake city,UT 85101
-          </p>
-
-          <p>Estimated delivery time: 20 to 25 mins</p>
-
-        </div>
-      </article>
-    </dialog>
-    <button onclick="getRestaurantList()"> Show Nearby Restaurants </button>
-    <button onclick="getLatLon()"> Get Latitude & Longitude </button>
-
+    
     <!--previous orders-->
     <dialog id="previousOrders-dialog">
       <article>
@@ -258,6 +270,9 @@
         </div>
       </article>
     </dialog>
+  </main>
+
+
   </main>
 
   <script src="./script.js"></script>
