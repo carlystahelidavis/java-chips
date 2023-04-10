@@ -1,19 +1,3 @@
-//* global variables*//
-var range = document.getElementById("range");
-var rangeValue = document.getElementById("range-value");
-var home = document.querySelector("#home-page");
-var start = document.querySelector("#start-button");
-var preferences = document.querySelector("#preferences-page");
-var previousOrders = document.querySelector('#previous-orders');
-var latitude = "40.758701";
-var longitude = "-111.876183";
-var restaurantsArray = [];
-var orderProcessing = document.querySelector("#order-processing");
-var submitOrder = document.querySelector("#submitOrder");
-var orderSubmitted = document.querySelector("#order-submitted");
-var restaurantName = document.querySelector("#restaurantName");
-var dishName = document.querySelector("#dishName");
-var tryAgain = document.querySelector("#try-again");
 
 // Config
 var latitude = localStorage.getItem("latitude");
@@ -69,14 +53,6 @@ const closeModal = modal => {
     document.documentElement.style.removeProperty('--scrollbar-width');
     modal.removeAttribute('open');
   }, animationDuration);
-
-}
-
-range.addEventListener("input", function () {
-  rangeValue.textContent = range.value + ' miles';
-});
-
-
 
 }
 
@@ -142,11 +118,6 @@ function getLatLon() {
   };
 
   fetch('https://address-from-to-latitude-longitude.p.rapidapi.com/geolocationapi?address=' + encode, options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
-}
-
     .then(function (response) {
       return response.json();
     })
@@ -229,7 +200,6 @@ submitOrder.addEventListener('click', function (event) { //first function that r
   var minRating = minRatingSelected.value;
 
   //building the URL used in the API call and with all the user preferences selected
-
   var URL =
     "https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=" +
     latitude +
@@ -276,13 +246,11 @@ function getCuisine(restaurantID, restaurantCuisine) { //function will check if 
 }
 
 function getDetail(restaurant, cuisineArray) {
-
   var cuisineName = cuisineArray[0].name; //new variable with the value of the first item in the cuisine data
   var restaurantOptions = restaurant; //restaurant ID is assigned to restaurantOptions
   var cuisineSelected = document.querySelector("#cuisineSelected"); //user selected cuisine
   var cuisinePreference = cuisineSelected.value; 
   if (cuisineName === cuisinePreference) { //if the user selected cuisine matches the restaurant cuisine then push to the restaurantsArray but only if it doesn't already exist
-
     if (!restaurantsArray.includes(restaurantOptions)) {
       restaurantsArray.push([restaurantOptions]); //had to wrap the restaurantOptions before pushing since the restaurantOptions and cuisineName are at different levels
     }
@@ -300,9 +268,7 @@ function randomRestaurant() { //selecting a random restaurant from the restauran
     ;
     console.log(selectedRestaurant);
 
-
     getItem(selectedRestaurant); //pass the random restaurant to the getItem function
-
   }
 }
 
@@ -343,19 +309,6 @@ function filter(data) {
   }
   var confirmRestaurant = localStorage.getItem("Restaurant"); //different elements to display order information when the restaurant and dish have been succesfully retrieved
   var confirmDish = localStorage.getItem("Dish");
-
-//*function to get past orders from the button*//
-function getPastOrders() {
-  var pastDishes = localStorage.getItem("Dish");
-  var pastRestaurants = localStorage.getItem("Restaurant");
-  localStorage.setItem(pastDishes, pastRestaurants);
-  var pastDishesAndRestaurantsEL = document.createElement("p");
-  pastDishesAndRestaurantsEL.textContent = `${pastDishes} - ${pastRestaurants}`;
-  previousOrders.appendChild(pastDishesAndRestaurantsEL);
-};
-
-getPastOrders();
-=======
   thankYou.textContent = "Thank you, " + localStorage.getItem("firstname") + " " + localStorage.getItem("lastname");
   restaurantName.textContent = "Your order has been sent to " + confirmRestaurant + " located at " + data.address;
   dishName.textContent = "Food item ordered: " + confirmDish;
@@ -381,6 +334,7 @@ document.querySelector("#homeButton").addEventListener("click", function () {
   preferences.setAttribute("style", "display: none");
   home.setAttribute("style", "display: block");
 }); 
+
 
 
 
