@@ -95,7 +95,7 @@ function getRestaurantList() {
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': 'bcfd012af7msh7fdff2617da2484p1117acjsn51c78b0dac2b',
+      'X-RapidAPI-Key': '00f9c8e49fmshe497b54f0a15c1ap147920jsn29c568417b24',
       'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
     }
   };
@@ -113,11 +113,11 @@ function getLatLon() {
   var encode = encodeURIComponent(address); // to escape spaces in the url
 
   const options = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'X-RapidAPI-Key': '8403ee9960msh8ee9ed3f1dc65f9p1d13c3jsna559bd38400a',
-      'X-RapidAPI-Host': 'address-from-to-latitude-longitude.p.rapidapi.com'
-    }
+      "X-RapidAPI-Key": '00f9c8e49fmshe497b54f0a15c1ap147920jsn29c568417b24',
+      "X-RapidAPI-Host": "address-from-to-latitude-longitude.p.rapidapi.com",
+    },
   };
 
   fetch('https://address-from-to-latitude-longitude.p.rapidapi.com/geolocationapi?address=' + encode, options)
