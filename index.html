@@ -3,11 +3,11 @@
 
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
-    <link rel="stylesheet" href="./style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+  <link rel="stylesheet" href="./style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
     integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
 </head>
 
@@ -24,10 +24,9 @@
     </ul>
     <nav>
       <ul>
-        <li><a id="homeButton" href="#" role="button">Home</a></li>
+        <li><button data-target="home">Home</button></li>
+        <li><button data-target="previousOrders-dialog" onClick="toggleModal(event)">Previous Orders</button></li>
         <li><button data-target="address-dialog" onClick="toggleModal(event)">Delivery Address</button></li>
-        <li><a href="#" role="button">Previous Orders</a></li>
-
       </ul>
     </nav>
     <dialog open id="modal-example">
@@ -126,7 +125,8 @@
         <p id="time">
         </p>
         <footer>
-          <a id="orderConfirmed" href="#confirm" role="button" data-target="order-submitted" onClick="toggleModal(event)">
+          <a id="orderConfirmed" href="#confirm" role="button" data-target="order-submitted"
+            onClick="toggleModal(event)">
             Ok
           </a>
         </footer>
@@ -239,9 +239,19 @@
     </dialog>
 
     <!-- Nishanthi's Address page ends here! -->
-    </nav>
-
+    <!--previous orders-->
+    <dialog id="previousOrders-dialog">
+      <article>
+        <a href="#close" aria-label="Close" class="close" data-target="previousOrders-dialog"
+          onClick="toggleModal(event)">
+        </a>
+        <div id="previous-orders">
+          <h3>Orders</h3>
+        </div>
+      </article>
+    </dialog>
   </main>
+
 
   <script src="./script.js"></script>
 </body>
