@@ -9,6 +9,9 @@ const animationDuration = 400; // ms
 let visibleModal = null;
 var localTime = dayjs();
 var pickUpTime = localTime.add(30, 'minute').format('hh:mm a');
+var previousOrders = document.querySelector('#previous-orders');
+var previousOrdersDialog = document.querySelector('#previousOrders-dialog');
+
 
 // Toggle modal
 const toggleModal = event => {
@@ -163,7 +166,7 @@ function saveAddress() {
 
 
 var range = document.getElementById("range"); //selecting various elements from HTML to add functionality
-var rangeValue = document.getElementById("range-value"); 
+var rangeValue = document.getElementById("range-value");
 var home = document.querySelector("#home-page");
 var start = document.querySelector("#start-button");
 var preferences = document.querySelector("#preferences-page");
@@ -183,13 +186,13 @@ start.addEventListener("click", beginOrder); //adding event listener to button
 
 var restaurantsArray = []; //empty array used to store restaurant ID's that match user preferences
 var orderProcessing = document.querySelector("#order-processing"); //selecting differenct containers for different messages
-var submitOrder = document.querySelector("#submitOrder"); 
+var submitOrder = document.querySelector("#submitOrder");
 var orderSubmitted = document.querySelector("#order-submitted");
 var restaurantName = document.querySelector("#restaurantName");
 var dishName = document.querySelector("#dishName");
 var tryAgain = document.querySelector("#try-again");
 var thankYou = document.querySelector("#thank-you");
-var time = document.querySelector("#time"); 
+var time = document.querySelector("#time");
 
 
 submitOrder.addEventListener('click', function (event) { //first function that runs when an order is submitted
@@ -249,7 +252,7 @@ function getDetail(restaurant, cuisineArray) {
   var cuisineName = cuisineArray[0].name; //new variable with the value of the first item in the cuisine data
   var restaurantOptions = restaurant; //restaurant ID is assigned to restaurantOptions
   var cuisineSelected = document.querySelector("#cuisineSelected"); //user selected cuisine
-  var cuisinePreference = cuisineSelected.value; 
+  var cuisinePreference = cuisineSelected.value;
   if (cuisineName === cuisinePreference) { //if the user selected cuisine matches the restaurant cuisine then push to the restaurantsArray but only if it doesn't already exist
     if (!restaurantsArray.includes(restaurantOptions)) {
       restaurantsArray.push([restaurantOptions]); //had to wrap the restaurantOptions before pushing since the restaurantOptions and cuisineName are at different levels
@@ -272,7 +275,7 @@ function randomRestaurant() { //selecting a random restaurant from the restauran
   }
 }
 
-function getItem(selectedRestaurant) { 
+function getItem(selectedRestaurant) {
   var id = selectedRestaurant; //all we've been passing for the restaurant has been the id so we can make another API call to get more details since the first call didn't contain dishes
   var detailsURL = //building URL for next API call using the restaurant ID
     "https://travel-advisor.p.rapidapi.com/restaurants/get-details?location_id=" +
@@ -333,8 +336,16 @@ document.querySelector("#homeButton").addEventListener("click", function () {
   preferences.reset();
   preferences.setAttribute("style", "display: none");
   home.setAttribute("style", "display: block");
-}); 
+});
 
 
-
-
+function getPastOrders() {
+  var pastDishes = localStorage.getItem("Dish");
+  var pastRestaurants = localStorage.getItem("Restaurant");
+  localStorage.setItem(pastDishes, pastRestaurants);
+  var pastDishesAndRestaurantsEL = document.createElement("p");
+  pastDishesAndRestaurantsEL.textContent = `${pastDishes} - ${pastRestaurants}`;
+  previousOrders.appendChild(pastDishesAndRestaurantsEL);
+  console.log("it works")
+};
+getPastOrders();
